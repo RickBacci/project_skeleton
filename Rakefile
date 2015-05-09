@@ -13,6 +13,10 @@ task default: [:test]
 task :create do  # rake create project_name
   name = ARGV.last
 
+
+  `cp("../copy_only_project_skeleton", "../#{name}")`
+  `cd("../#{name}")`
+
   puts "Creating #{name} project files."
   task name.to_sym do
 
@@ -51,4 +55,6 @@ task :create do  # rake create project_name
   name = name.downcase
   mv("./test/NAME_test.rb", "./test/#{name}_test.rb")
   mv("./lib/NAME.rb", "./lib/#{name}.rb")
+
+  #cp("../copy_only_project_skeleton", "../#{name}")
 end
